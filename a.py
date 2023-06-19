@@ -1,22 +1,13 @@
-# feeling wheel app
-# lucas cordero 2023
-import os 
-from datetime import datetime, timedelta
+# ASK ALI OR IMANUEL
+# I DON'T KNOW HOW TF TO PROGRAM LMAO
 
-"""
-Going to hopefully use the dates to generate a markdown file that it adds to.
-    - to be synced in dropbox/syncthing folder
-"""
+
+import os
+from datetime import datetime, timedelta
 
 today = datetime.now()
 yest = datetime.now() - timedelta(1)
 
-"""
-TODO:
-* maybe find a way to not hard-code this dictionary in? using class?
-    - issue being every feeling has their own amount of args/sub-feelings
-    - i think i am overthinking it
-""" 
 feelings = {
         'happy':
             {
@@ -123,31 +114,36 @@ feelings = {
                 },
         }
 
+base_feelings=('happy', 'sad', 'disgusted', 'angry', 'fearful', 'bad',' surprised')
+happy_feelings=('playful', 'content', 'interested', 'proud', 'accepted', 'powerful', 'peaceful', 'trusting', 'optimistic')
+sad_feelings=('lonely', 'vulnerable', 'despair', 'guilty' 'depressed', 'hurt')
+disgusted_feelings=('repelled', 'awful', 'disappointed', 'disapproving') 
+angry_feelings=('critical', 'distant', 'frustrated', 'aggressive', 'mad', 'bitter', 'humiliated', 'let down')
+fearful_feelings=('threatened', 'rejected', 'weak', 'insecure', 'anxious', 'scared') 
+bad_feelings=('bored', 'busy', 'stressed', 'tired')
+surprised_feelings=('startled', 'confused', 'amazed', 'excited')
+
 def run():
-    base_feelings = ["happy", "sad", "disgusted", "angry", "fearful", "bad", "surprised"] 
-    print('Pick one of the feelings!\n') 
-    user_answer=str(input("Enter Answer: "))
-    if user_answer in feelings:
-        print('yes', feelings[user_answer])
+    for index, val in enumerate(base_feelings):
+        print(index+1, val)
+    user_input=str(input('Pick a feeling!: '))
+    if user_input in base_feelings:
+        print(True)
     else:
-        print('no')
+        print(False)
 
-    # for x, y in feelings.items():
-    #     print(x)
-    #     print(y)
-
-def exit_application():
-    print("exit_application")
+def exit_app():
+    print("exit_app")
     sys.exit(0)
 
-
-
 def main():
-    user_input = input("""
-    Feelings Wheel CLI Application
-    Press Y to Continue
-    Press Q to Quit
-    """)
+    user_input = str(input(
+        """
+        Feelings Wheel CLI Application
+        Press Y to Continue
+        Press Q to Quit
+        """
+        ))
     try:
         if not (user_input.lower() == "y" or user_input.lower() == "q"):
             raise ValueError("Input input")
@@ -156,11 +152,11 @@ def main():
     else:
             switcher = {
                     "y": run,
-                    "q": exit_application
-            }
+                    "q": exit_app
+                    }
     return switcher.get(user_input)()
 
 if __name__ == "__main__":
     main()
-
+        
 
